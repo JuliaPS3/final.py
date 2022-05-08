@@ -31,6 +31,6 @@ my_acronym=acronym[position]
 st.write(my_acronym)
 
   
-c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country=acronym_selected GROUP BY organizationURL ORDER BY ecContribution DESC{}".format(acronym_selected),conn)
+c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country={acronym_selected} GROUP BY organizationURL ORDER BY ecContribution DESC".format(acronym_selected),conn)
 df_participants = pd.DataFrame(c1, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count'])  
 st.dataframe(df_participants)
