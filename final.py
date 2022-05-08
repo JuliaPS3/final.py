@@ -16,9 +16,8 @@ for i in countries_column:
   countries.append(i)
 country_selected = st.selectbox('Country name', countries)
 
-position=0
-for i in countries_column: 
-  if i==country_selected:
+for i in range(len(countries)):
+  if countries[i]=='France':
     position=i
   
 st.write('You selected:', country_selected)
@@ -28,6 +27,7 @@ acronym_column = df['Acronym']
 acronym=[]
 for i in acronym_column:
   acronym.append(i)
+my_acronym=acronym[position]
 
   
 c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country=acronym_chosen[position] GROUP BY organizationURL ORDER BY ecContribution DESC",conn)
