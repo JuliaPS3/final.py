@@ -30,6 +30,6 @@ for i in acronym_column:
 my_acronym=acronym[position]
 st.write(my_acronym)
 
-c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL FROM participants WHERE country=='FR'".format(country_selected),conn)
+c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, SUM(ecContribution), COUNT(organizationURL) FROM participants WHERE country=='FR' GROUP BY organizationURL ORDER BY SUM(ecContribution)".format(country_selected),conn)
 df_participants = pd.DataFrame(c1, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count'])  
 st.dataframe(df_participants)
