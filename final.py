@@ -4,8 +4,8 @@ from sqlite3 import connect
 
 conn = sqlite3.connect('db1.db')
 cur = conn.cursor()
-countries_db=pd.read_sql('SELECT Country, Acronym FROM Countries',conn)
-df = pd.DataFrame(countries_db, columns = ['Countries', 'Acronym'])
+cur.execute('SELECT Country, Acronym FROM Countries')
+df = pd.DataFrame(cur.fetchall(), columns = ['Countries', 'Acronym'])
 
 
 import streamlit as st
