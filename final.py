@@ -15,10 +15,22 @@ countries = []
 for i in countries_column:
   countries.append(i)
 country_selected = st.selectbox('Country name', countries)
+
+position=0
+for i in countries_column: 
+  if i==country_selected:
+    position=i
+  
 st.write('You selected:', country_selected)
 my_country=st.write(country_selected)
 
-c1=pd.read_sql("SELECT country AS Acronym, shortName, name, activityType, ecContribution, organizationURL, role, countries.Country FROM Participants LEFT JOIN countries ON participants.country=countries.Acronym", conn)
+acronym_column = df['Acronym']
+acronym=[]
+for i in acronym_column:
+  acronym_chosen=i[position]
 
-df_participants = pd.DataFrame(c1, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count','hi'])
+
+  
+c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country=acronym_chosen GROUP BY organizationURL ORDER BY ecContribution DESC",conn)
+df_participants = pd.DataFrame(c1, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count'])  
 st.dataframe(df_participants)
