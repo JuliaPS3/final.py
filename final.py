@@ -27,7 +27,7 @@ for i in acronym_column:
 my_acronym=acronym[position]
 
 
-st.write('You selected:', country_selected,my_acronym)
+st.write('You selected:', country_selected,',',my_acronym)
 
 
 
