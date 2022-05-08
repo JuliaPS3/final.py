@@ -19,6 +19,6 @@ st.write('You selected:', country_selected)
 my_country=st.write(country_selected)
 
 pd.read_sql("SELECT Participants.country AS Acronym, shortName, name, activityType, ecContribution, organizationURL, role, countries.Country FROM Participants LEFT JOIN countries ON participants.country=countries.Acronym", conn)
-c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL FROM together WHERE role = 'coordinator' AND Country='Frnace'",conn)
+c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL FROM Participnats WHERE role = 'coordinator' AND Country='France'",conn)
 df_participants = pd.DataFrame(c1, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count'])
 st.dataframe(df_participants)
