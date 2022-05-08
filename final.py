@@ -13,7 +13,7 @@ import pandas as pd
 countries_column = df['Countries']
 countries = []
 
-image=image.open('LOGO-KDT-JU.webp')
+image=image.open('KDT JU logo full')
 st.image(image)
 st.header('Partner search tool')
 for i in countries_column:
