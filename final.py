@@ -14,7 +14,7 @@ from PIL import Image
 countries_column = df['Countries']
 countries = []
 
-image=Image.open('KDT JU logo full.jpg')
+image=Image.open('WhatsApp Image 2022-05-08 at 8.26.19 PM.jpeg')
 st.image(image)
 st.header('Partner search tool')
 for i in countries_column:
