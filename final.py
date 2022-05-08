@@ -12,6 +12,8 @@ import streamlit as st
 import pandas as pd
 countries_column = df['Countries']
 countries = []
+
+st.header('Partner search tool')
 for i in countries_column:
   countries.append(i)
 country_selected = st.selectbox('Country name', countries)
@@ -31,12 +33,12 @@ st.write('You selected:', country_selected,',',my_acronym)
 
 
 
-st.text('Participants of', country_selected)
+st.write('Participants of', country_selected)
 participants=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, SUM(ecContribution), COUNT(organizationURL) FROM participants WHERE role='participant' GROUP BY organizationURL ORDER BY SUM(ecContribution) DESC",conn)
 df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count'])  
 st.dataframe(df_participants)
 
-st.text('Coordinators of', country_selected)
+st.write('Coordinators of', country_selected)
 coordinators=pd.read_sql("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' ORDER BY shortName",conn)
 df_coordinators = pd.DataFrame(coordinators, columns= ['Short Name', 'Name', 'Activity Type', 'Project Acronym'])  
 st.dataframe(df_coordinators)
