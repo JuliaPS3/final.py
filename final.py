@@ -10,10 +10,11 @@ df = pd.DataFrame(cur.fetchall(), columns = ['Countries', 'Acronym'])
 
 import streamlit as st
 import pandas as pd
+from PIL import Image
 countries_column = df['Countries']
 countries = []
 
-image=image.open('KDT JU logo full.jpg')
+image=Image.open('KDT JU logo full.jpg')
 st.image(image)
 st.header('Partner search tool')
 for i in countries_column:
