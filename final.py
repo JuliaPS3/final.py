@@ -27,7 +27,7 @@ acronym_column = df['Acronym']
 acronym=[]
 for i in acronym_column:
   acronym.append(i)
-my_acronym=str(acronym[position])
+my_acronym=acronym[position]
 st.write(my_acronym)
 
 c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL FROM participants WHERE role == 'coordinator' AND country=={}".format(my_acronym),conn)
