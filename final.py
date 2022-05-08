@@ -37,7 +37,7 @@ df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', '
 st.dataframe(df_participants)
 
 st.write('Coordinators of', country_selected)
-coordinators=pd.read_sql("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' AND country='FR' ORDER BY shortName",conn)
+coordinators=pd.read_sql("SELECT shortName, name, ActivityType, projectAcronym FROM participants WHERE role='coordinator' ORDER BY shortName",conn)
 df_coordinators = pd.DataFrame(coordinators, columns= ['Short Name', 'Name', 'Activity Type', 'Project Acronym'])  
 st.dataframe(df_coordinators)
 
