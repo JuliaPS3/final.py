@@ -18,6 +18,6 @@ country_selected = st.selectbox('Country name', countries)
 st.write('You selected:', country_selected)
 
 pd.read_sql("SELECT participants.country, shortName, name, activityType, ecContribution, organizationURL, role, countries.Country FROM Participants LEFT JOIN countries ON participants.country=countries.Acronym", conn
-c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country=acronym_selected GROUP BY organizationURL ORDER BY ecContribution DESC",conn)
+c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, COUNT(organizationURL) FROM Participants WHERE role = 'coordinator' AND country='acronym_selected' GROUP BY organizationURL ORDER BY ecContribution DESC",conn)
 df_participants = pd.DataFrame(c1, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count'])
 st.dataframe(df_participants)
