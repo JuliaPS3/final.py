@@ -16,6 +16,7 @@ for i in countries_column:
   countries.append(i)
 country_selected = st.selectbox('Country name', countries)
 st.write('You selected:', country_selected)
+st.write(country_selected.dtype)
 
 pd.read_sql("SELECT participants.country, shortName, name, activityType, ecContribution, organizationURL, role, countries.Country FROM Participants LEFT JOIN countries ON participants.country=countries.Acronym", conn)
 c1=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL FROM Participants WHERE role = 'coordinator' AND Country='country_selected'",conn)
