@@ -17,7 +17,7 @@ for i in countries_column:
 country_selected = st.selectbox('Country name', countries)
 
 for i in range(len(countries)):
-  if countries[i]=='France':
+  if countries[i]==country_selected:
     position=i
   
 st.write('You selected:', country_selected)
