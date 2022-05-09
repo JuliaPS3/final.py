@@ -37,7 +37,7 @@ st.write('You selected:', country_selected,',',my_acronym)
 
 
 st.write('Participants of', country_selected)
-participants=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, SUM(ecContribution), COUNT(organizationURL) FROM participants WHERE role='participant' GROUP BY organizationURL ORDER BY SUM(ecContribution) DESC",conn)
+participants=pd.read_sql("SELECT country, shortName, name, activityType, ecContribution, organizationURL, SUM(ecContribution), COUNT(organizationURL) FROM participants WHERE role='participant' AND country='{}' GROUP BY organizationURL ORDER BY SUM(ecContribution) DESC".format(my_acronym),conn)
 df_participants = pd.DataFrame(participants, columns= ['country', 'shortName', 'name', 'activityType', 'Sum','organizationURL', 'count'])  
 st.dataframe(df_participants)
 
